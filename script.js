@@ -49,7 +49,7 @@ let toggleWallpaper = true;
             img.onload = function(){
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 const a = document.createElement('a');
-                a.download = 'logo.png';
+                a.download = `logo_${color.value.substring(1)}${!toggleWallpaper ? '_bg_' + wallpaperColor.value.substring(1) : ''}.png`;
                 a.href = canvas.toDataURL('image/png');
                 a.click();
             }
