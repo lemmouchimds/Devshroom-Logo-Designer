@@ -5,20 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="container mt-5 mb-4">
         <div class="row justify-content-center g-3">
-            <div class="col-md-3">
+            <!-- Wallpaper controls group -->
+            <div class="col-md-4">
                 <div class="input-group">
-                    <span class="input-group-text">Color</span>
-                    <input type="color" class="form-control form-control-color w-50" id="color" value="#ff0000">
+                    <span class="input-group-text">Wallpaper Color</span>
+                    <input type="color" class="form-control form-control-color w-50" id="wallpaper-color" value="#3EB6A8">
+                    <button class="btn btn-outline-primary" id="toggle-wallpaper">Toggle Wallpaper</button>
                 </div>
             </div>
-            <div class="col-md-3">
+
+            <!-- Logo controls group -->
+            <div class="col-md-6">
                 <div class="input-group">
+                    <span class="input-group-text">Logo Color</span>
+                    <input type="color" class="form-control form-control-color" id="color" value="#B22222">
                     <button id="Toggle" class="btn btn-outline-success">Toggle Dots</button>
-                    <button id="Download" class="btn btn-outline-primary">Download</button>
+                    <button id="toggle-text" class="btn btn-outline-danger">Toggle Text</button>
+                    <button id="Download" class="btn btn-outline-primary"><i class="bi bi-download"></i></button>
                 </div>
             </div>
         </div>
@@ -41,7 +49,7 @@
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
     <style type="text/css">
-        .st0{fill:#ffffff; display: none;}
+        .st0{fill:#3EB6A8; display: none;}
         .st1{fill:#B22222;}
         .st2{fill:#B22222; display: none;}
     </style>
@@ -106,7 +114,7 @@
             </g>
             <g>
                 <g>
-                    <path class="st1" d="M125.07,817.11v-63.93h51.53c2.25,0,4.32,0.56,6.22,1.69c1.9,1.12,3.41,2.62,4.53,4.48
+                    <path class="st1 text" d="M125.07,817.11v-63.93h51.53c2.25,0,4.32,0.56,6.22,1.69c1.9,1.12,3.41,2.62,4.53,4.48
                         c1.12,1.86,1.69,3.92,1.69,6.17v39.25c0,2.25-0.56,4.31-1.69,6.17c-1.13,1.86-2.64,3.36-4.53,4.48
                         c-1.9,1.12-3.97,1.69-6.22,1.69H125.07z M137.77,805.3h38.29c0.3,0,0.56-0.1,0.8-0.31c0.24-0.21,0.36-0.46,0.36-0.75v-38.18
                         c0-0.3-0.12-0.55-0.36-0.76c-0.24-0.21-0.5-0.31-0.8-0.31h-38.29c-0.3,0-0.55,0.1-0.76,0.31c-0.21,0.21-0.31,0.46-0.31,0.76
@@ -115,7 +123,7 @@
                         H302.24z"/>
                 </g>
                 <g>
-                    <path class="st1" d="M366.48,817.06c-2.25,0-4.31-0.56-6.18-1.69c-1.87-1.12-3.36-2.62-4.49-4.48
+                    <path class="st1 text" d="M366.48,817.06c-2.25,0-4.31-0.56-6.18-1.69c-1.87-1.12-3.36-2.62-4.49-4.48
                         c-1.13-1.86-1.69-3.92-1.69-6.17v-4.88h11.73v4.35c0,0.3,0.1,0.55,0.31,0.75c0.21,0.21,0.46,0.31,0.76,0.31h38.29
                         c0.3,0,0.55-0.1,0.75-0.31c0.21-0.21,0.31-0.46,0.31-0.75v-12.16c0-0.3-0.1-0.53-0.31-0.71c-0.21-0.18-0.46-0.27-0.75-0.27
                         h-38.74c-2.25,0-4.31-0.56-6.18-1.69c-1.87-1.12-3.36-2.62-4.49-4.48c-1.13-1.86-1.69-3.95-1.69-6.26v-13.14
@@ -125,109 +133,46 @@
                         c0,0.3,0.1,0.53,0.31,0.71c0.21,0.18,0.46,0.27,0.76,0.27h38.83c2.25,0,4.31,0.56,6.17,1.69c1.87,1.12,3.36,2.62,4.49,4.48
                         c1.13,1.86,1.69,3.95,1.69,6.26v13.14c0,2.25-0.56,4.31-1.69,6.17s-2.62,3.36-4.49,4.48c-1.87,1.12-3.92,1.69-6.17,1.69H366.48z
                         "/>
-                    <path class="st1" d="M427.87,817.06v-63.93h11.73v26.02h41.94v-26.02h11.73v63.93h-11.73v-26.02H439.6v26.02H427.87z"/>
-                    <path class="st1" d="M503.4,817.06v-63.84h51.53c2.25,0,4.32,0.56,6.22,1.69s3.41,2.62,4.53,4.48c1.13,1.86,1.69,3.92,1.69,6.17
+                    <path class="st1 text" d="M427.87,817.06v-63.93h11.73v26.02h41.94v-26.02h11.73v63.93h-11.73v-26.02H439.6v26.02H427.87z"/>
+                    <path class="st1 text" d="M503.4,817.06v-63.84h51.53c2.25,0,4.32,0.56,6.22,1.69s3.41,2.62,4.53,4.48c1.13,1.86,1.69,3.92,1.69,6.17
                         v17.23c0,2.25-0.56,4.32-1.69,6.22c-1.13,1.9-2.64,3.39-4.53,4.48c-1.9,1.1-3.97,1.64-6.22,1.64l-39.81,0.09v21.84H503.4z
                          M516.19,783.32h38.21c0.3,0,0.56-0.09,0.8-0.27c0.24-0.18,0.36-0.41,0.36-0.71v-16.34c0-0.3-0.12-0.55-0.36-0.76
                         c-0.24-0.21-0.5-0.31-0.8-0.31h-38.21c-0.3,0-0.55,0.1-0.75,0.31c-0.21,0.21-0.31,0.46-0.31,0.76v16.34
                         c0,0.3,0.1,0.53,0.31,0.71C515.64,783.23,515.89,783.32,516.19,783.32z M554.4,817.06l-19.28-23h15.37l16.7,19.71v3.29H554.4z"
                         />
-                    <path class="st1" d="M588.87,817.06c-2.25,0-4.31-0.56-6.17-1.69c-1.87-1.12-3.36-2.62-4.49-4.48
+                    <path class="st1 text" d="M588.87,817.06c-2.25,0-4.31-0.56-6.17-1.69c-1.87-1.12-3.36-2.62-4.49-4.48
                         c-1.13-1.86-1.69-3.92-1.69-6.17v-39.25c0-2.25,0.56-4.31,1.69-6.17c1.12-1.86,2.62-3.36,4.49-4.48
                         c1.87-1.12,3.92-1.69,6.17-1.69h39.27c2.25,0,4.31,0.56,6.18,1.69c1.87,1.12,3.36,2.62,4.49,4.48c1.13,1.86,1.69,3.92,1.69,6.17
                         v39.25c0,2.25-0.56,4.31-1.69,6.17c-1.13,1.86-2.62,3.36-4.49,4.48c-1.87,1.12-3.93,1.69-6.18,1.69H588.87z M589.32,805.25
                         h38.21c0.3,0,0.56-0.1,0.8-0.31c0.24-0.21,0.36-0.46,0.36-0.75v-38.18c0-0.3-0.12-0.55-0.36-0.76c-0.24-0.21-0.5-0.31-0.8-0.31
                         h-38.21c-0.3,0-0.55,0.1-0.75,0.31c-0.21,0.21-0.31,0.46-0.31,0.76v38.18c0,0.3,0.1,0.55,0.31,0.75
                         C588.77,805.15,589.02,805.25,589.32,805.25z"/>
-                    <path class="st1" d="M662.44,817.06c-2.25,0-4.31-0.56-6.17-1.69c-1.87-1.12-3.36-2.62-4.49-4.48
+                    <path class="st1 text" d="M662.44,817.06c-2.25,0-4.31-0.56-6.17-1.69c-1.87-1.12-3.36-2.62-4.49-4.48
                         c-1.13-1.86-1.69-3.92-1.69-6.17v-39.25c0-2.25,0.56-4.31,1.69-6.17c1.12-1.86,2.62-3.36,4.49-4.48
                         c1.87-1.12,3.92-1.69,6.17-1.69h39.27c2.25,0,4.31,0.56,6.18,1.69c1.87,1.12,3.36,2.62,4.49,4.48c1.13,1.86,1.69,3.92,1.69,6.17
                         v39.25c0,2.25-0.56,4.31-1.69,6.17c-1.13,1.86-2.62,3.36-4.49,4.48c-1.87,1.12-3.93,1.69-6.18,1.69H662.44z M662.88,805.25
                         h38.21c0.3,0,0.56-0.1,0.8-0.31c0.24-0.21,0.36-0.46,0.36-0.75v-38.18c0-0.3-0.12-0.55-0.36-0.76c-0.24-0.21-0.5-0.31-0.8-0.31
                         h-38.21c-0.3,0-0.55,0.1-0.75,0.31c-0.21,0.21-0.31,0.46-0.31,0.76v38.18c0,0.3,0.1,0.55,0.31,0.75
                         C662.34,805.15,662.59,805.25,662.88,805.25z"/>
-                    <path class="st1" d="M723.84,817.06v-63.93h12.88l23.19,27.61l23.1-27.61h12.97v63.93h-11.82v-46.88l-24.26,28.86l-24.35-28.77
+                    <path class="st1 text" d="M723.84,817.06v-63.93h12.88l23.19,27.61l23.1-27.61h12.97v63.93h-11.82v-46.88l-24.26,28.86l-24.35-28.77
                         v46.79H723.84z"/>
                 </g>
             </g>
         </g>
     </g>
     <g id="Calque_2">
-        <circle class="st2" cx="343.43" cy="473.97" r="10.31"/>
-        <circle class="st2" cx="414.65" cy="449.88" r="10.31"/>
-        <circle class="st2" cx="455.53" cy="488.21" r="10.31"/>
-        <circle class="st2" cx="544.21" cy="493.1" r="10.31"/>
-        <circle class="st2" cx="377.3" cy="403.43" r="7.18"/>
-        <circle class="st2" cx="444.2" cy="340.4" r="7.18"/>
-        <circle class="st2" cx="545.97" cy="373.74" r="7.18"/>
-        <circle class="st2" cx="343.43" cy="473.97" r="10.31"/>
-        <circle class="st2" cx="584.07" cy="432.21" r="7.18"/>
+        <circle class="st2 dot" cx="343.43" cy="473.97" r="11"/>
+        <circle class="st2 dot" cx="414.65" cy="449.88" r="11"/>
+        <circle class="st2 dot" cx="455.53" cy="488.21" r="11"/>
+        <circle class="st2 dot" cx="544.21" cy="493.1" r="11"/>
+        <circle class="st2 dot" cx="377.3" cy="403.43" r="8"/>
+        <circle class="st2 dot" cx="444.2" cy="340.4" r="8"/>
+        <circle class="st2 dot" cx="545.97" cy="373.74" r="8"/>
+        <circle class="st2 dot" cx="343.43" cy="473.97" r="11"/>
+        <circle class="st2 dot" cx="584.07" cy="432.21" r="8"/>
     </g>
     </svg>
-<script>
-    
-    let toggle = false;
-    const color = document.querySelector('input[type="color"]');
-    // const hex = document.querySelector('input[type="text"]');
-    const btn = document.querySelector('#Toggle');
-    const checkbox = document.querySelector('input[type="checkbox"]');
-    // console.log(svgImage);
-    const svgImage = document.getElementsByClassName('st1');
-    const Dots = document.getElementsByClassName('st2');
-
-    // hex.addEventListener('input', function(){
-    //     color.value = hex.value;
-    //     for(let i = 0; i < svgImage.length; i++){
-    //         svgImage[i].style.fill = hex.value;
-    //     }
-    //     for(let i = 0; i < Dots.length; i++){
-    //         Dots[i].style.fill = hex.value;
-    //     }
-    // });
-    color.addEventListener('input', function(){
-        // hex.value = color.value;
-        for(let i = 0; i < svgImage.length; i++){
-            svgImage[i].style.fill = color.value;
-        }
-        for(let i = 0; i < Dots.length; i++){
-            Dots[i].style.fill = color.value;
-        }
-    });
-    btn.addEventListener('click', function(){
-        if(toggle){
-            for(let i = 0; i < Dots.length; i++){
-                Dots[i].style.display = 'block';
-            }
-        }
-        else{
-            for(let i = 0; i < Dots.length; i++){
-                Dots[i].style.display = 'none';
-            }
-        }
-
-        toggle = !toggle;
-        // svgImage.style.fill = hex.value;
-
-    });
-
-    const button = document.querySelector('#Download');
-            button.addEventListener('click', function(){
-            const svg = document.querySelector('svg');
-            const svgData = new XMLSerializer().serializeToString(svg);
-            const canvas = document.createElement('canvas');
-            canvas.width = 1000;
-            canvas.height = 1000; 
-            const ctx = canvas.getContext('2d');
-            const img = document.createElement('img');
-            img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(svgData));
-            img.onload = function(){
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const a = document.createElement('a');
-                a.download = 'logo.png';
-                a.href = canvas.toDataURL('image/png');
-                a.click();
-            }
-            });
+<script src="script.js">
 </script>
 
 </body>
