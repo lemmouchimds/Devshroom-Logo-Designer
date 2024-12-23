@@ -1,4 +1,4 @@
-let isDotsVisible = false;
+let isDotsVisible = "ture";
 let isTextVisible = false;
 let isWallpaperVisible = true;
 
@@ -18,7 +18,23 @@ const wallpaperColorPicker = document.querySelector('#wallpaper-color');
 
 const ascii = document.querySelector('#ascii');
 
-printDot(toAscii('U'));
+const flip = document.querySelector('#flip');
+
+//flip the colors of the wallpaper and the logo
+flip.addEventListener('click', function() {
+    let temp = colorPicker.value;
+    colorPicker.value = wallpaperColorPicker.value;
+    wallpaperColorPicker.value = temp;
+
+    for (let i = 0; i < svgElements.length; i++) {
+        svgElements[i].style.fill = colorPicker.value;
+    }
+    for (let i = 0; i < dotElements.length; i++) {
+        dotElements[i].style.fill = colorPicker.value;
+    }
+    wallpaperElement.style.fill = wallpaperColorPicker.value;
+    
+});
 
 colorPicker.addEventListener('input', function() 
 {
@@ -31,10 +47,9 @@ colorPicker.addEventListener('input', function()
 });
 
 toggleDotsButton.addEventListener('click', function() {
-    console.log(dotElements);
     if (isDotsVisible) {
         let asciiVal = toAscii(ascii.value);
-        printDot(asciiVal);
+        printDots(asciiVal);
         
     } else {
         for (let i = 0; i < dotElements.length; i++) {
@@ -46,10 +61,9 @@ toggleDotsButton.addEventListener('click', function() {
 });
 
 ascii.addEventListener('change', function() {
-    console.log(isDotsVisible);
     if (!isDotsVisible) {
         let asciiVal = toAscii(ascii.value);
-        printDot(asciiVal);
+        printDots(asciiVal);
     }
 });
 
@@ -111,7 +125,7 @@ function toAscii(c) {
     ].map(Boolean);
 }
 
-function printDot(asciiVal) {
+function printDots(asciiVal) {
     for (let i = 0; i < dotElements.length; i++) {
         dotElements[i].style.display = asciiVal[i] ? 'block' : 'none';
     }
