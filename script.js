@@ -1,90 +1,118 @@
-let toggleDots = true;
-let toggleText = false;
-let toggleWallpaper = true;
-    const color = document.querySelector('#color');
-    // const hex = document.querySelector('input[type="text"]');
-    const btn = document.querySelector('#Toggle');
-    const checkbox = document.querySelector('input[type="checkbox"]');
-    // console.log(svgImage);
-    const svgImage = document.getElementsByClassName('st1');
-    const Dots = document.getElementsByClassName('st2');
+let isDotsVisible = false;
+let isTextVisible = false;
+let isWallpaperVisible = true;
 
-    color.addEventListener('input', function(){
-        // hex.value = color.value;
-        for(let i = 0; i < svgImage.length; i++){
-            svgImage[i].style.fill = color.value;
-        }
-        for(let i = 0; i < Dots.length; i++){
-            Dots[i].style.fill = color.value;
-        }
-    });
+const colorPicker = document.querySelector('#color');
+const toggleDotsButton = document.querySelector('#Toggle');
+const svgElements = document.getElementsByClassName('st1');
+const dotElements = document.getElementsByClassName('st2');
 
-    btn.addEventListener('click', function(){
-        if(toggleDots){
-            for(let i = 0; i < Dots.length; i++){
-                Dots[i].style.display = 'block';
-            }
-        }
-        else{
-            for(let i = 0; i < Dots.length; i++){
-                Dots[i].style.display = 'none';
-            }
-        }
+const downloadButton = document.querySelector('#Download');
 
-        toggleDots = !toggleDots;
-        // svgImage.style.fill = hex.value;
+const textElements = document.getElementsByClassName('text');
+const toggleTextButton = document.querySelector('#toggle-text');
 
-    });
+const wallpaperElement = document.querySelector('.st0');
+const toggleWallpaperButton = document.querySelector('#toggle-wallpaper');
+const wallpaperColorPicker = document.querySelector('#wallpaper-color');
 
-    const button = document.querySelector('#Download');
-            button.addEventListener('click', function(){
-            const svg = document.querySelector('svg');
-            const svgData = new XMLSerializer().serializeToString(svg);
-            const canvas = document.createElement('canvas');
-            canvas.width = 1000;
-            canvas.height = 1000; 
-            const ctx = canvas.getContext('2d');
-            const img = document.createElement('img');
-            img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(svgData));
-            img.onload = function(){
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const a = document.createElement('a');
-                a.download = `logo_${color.value.substring(1)}${!toggleWallpaper ? '_bg_' + wallpaperColor.value.substring(1) : ''}.png`;
-                a.href = canvas.toDataURL('image/png');
-                a.click();
-            }
-            });
+const ascii = document.querySelector('#ascii');
 
-const text = document.getElementsByClassName('text');
-const textToggle = document.querySelector('#toggle-text');
-textToggle.addEventListener('click', function(){
-    if(toggleText){
-        for(let i = 0; i < text.length; i++){
-            text[i].style.display = 'block';
-            text[i].style.fill = color.value;
-        }
+printDot(toAscii('U'));
+
+colorPicker.addEventListener('input', function() 
+{
+    for (let i = 0; i < svgElements.length; i++) {
+        svgElements[i].style.fill = colorPicker.value;
     }
-    else{
-        for(let i = 0; i < text.length; i++){
-            text[i].style.display = 'none';
-        }
+    for (let i = 0; i < dotElements.length; i++) {
+        dotElements[i].style.fill = colorPicker.value;
     }
-    toggleText = !toggleText;
 });
 
-const wallpaper = document.querySelector('.st0');
-const wallpaperToggleBtn = document.querySelector('#toggle-wallpaper');
-const wallpaperColor = document.querySelector('#wallpaper-color');
-wallpaperColor.addEventListener('input', function(){
-    wallpaper.style.fill = wallpaperColor.value;
+toggleDotsButton.addEventListener('click', function() {
+    console.log(dotElements);
+    if (isDotsVisible) {
+        let asciiVal = toAscii(ascii.value);
+        printDot(asciiVal);
+        
+    } else {
+        for (let i = 0; i < dotElements.length; i++) {
+            dotElements[i].style.display = 'none';
+        }
+    }
+
+    isDotsVisible = !isDotsVisible;
 });
 
-wallpaperToggleBtn.addEventListener('click', function(){
-    if(toggleWallpaper){
-        wallpaper.style.display = 'block';
+ascii.addEventListener('change', function() {
+    console.log(isDotsVisible);
+    if (!isDotsVisible) {
+        let asciiVal = toAscii(ascii.value);
+        printDot(asciiVal);
     }
-    else{
-        wallpaper.style.display = 'none';
-    }
-    toggleWallpaper = !toggleWallpaper;
 });
+
+downloadButton.addEventListener('click', function() {
+    const svg = document.querySelector('svg');
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement('canvas');
+    canvas.width = 1000;
+    canvas.height = 1000;
+    const ctx = canvas.getContext('2d');
+    const img = document.createElement('img');
+    img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(svgData));
+    img.onload = function() {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const a = document.createElement('a');
+        a.download = `logo_${colorPicker.value.substring(1)}${!isWallpaperVisible ? '_bg_' + wallpaperColorPicker.value.substring(1) : ''}.png`;
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+    }
+});
+
+toggleTextButton.addEventListener('click', function() {
+    if (isTextVisible) {
+        for (let i = 0; i < textElements.length; i++) {
+            textElements[i].style.display = 'block';
+            textElements[i].style.fill = colorPicker.value;
+        }
+    } else {
+        for (let i = 0; i < textElements.length; i++) {
+            textElements[i].style.display = 'none';
+        }
+    }
+    isTextVisible = !isTextVisible;
+});
+
+wallpaperColorPicker.addEventListener('input', function() {
+    wallpaperElement.style.fill = wallpaperColorPicker.value;
+});
+
+toggleWallpaperButton.addEventListener('click', function() {
+    if (isWallpaperVisible) {
+        wallpaperElement.style.display = 'block';
+    } else {
+        wallpaperElement.style.display = 'none';
+    }
+    isWallpaperVisible = !isWallpaperVisible;
+});
+
+function toAscii(c) {
+    return [
+        c.charCodeAt(0) & 128,
+        c.charCodeAt(0) & 64,
+        c.charCodeAt(0) & 32,
+        c.charCodeAt(0) & 16,
+        c.charCodeAt(0) & 8,
+        c.charCodeAt(0) & 4,
+        c.charCodeAt(0) & 2,
+        c.charCodeAt(0) & 1
+    ].map(Boolean);
+}
+
+function printDot(asciiVal) {
+    for (let i = 0; i < dotElements.length; i++) {
+        dotElements[i].style.display = asciiVal[i] ? 'block' : 'none';
+    }
+}
