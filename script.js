@@ -5,7 +5,7 @@ let isWallpaperVisible = true;
 const colorPicker = document.querySelector('#color');
 const toggleDotsButton = document.querySelector('#Toggle');
 const svgElements = document.getElementsByClassName('st1');
-const dotElements = document.getElementsByClassName('st2');
+const dotElements = document.getElementsByClassName('dot');
 
 const downloadButton = document.querySelector('#Download');
 
@@ -72,7 +72,7 @@ downloadButton.addEventListener('click', function() {
     const svgData = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement('canvas');
     canvas.width = 1000;
-    canvas.height = 1094.96;
+    canvas.height = 1000;
     const ctx = canvas.getContext('2d');
     const img = document.createElement('img');
     img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(svgData));
