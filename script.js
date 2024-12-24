@@ -72,7 +72,7 @@ downloadButton.addEventListener('click', function() {
     const svgData = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement('canvas');
     canvas.width = 1000;
-    canvas.height = 1000;
+    canvas.height = 1094.96;
     const ctx = canvas.getContext('2d');
     const img = document.createElement('img');
     img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(svgData));
